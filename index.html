@@ -20,16 +20,20 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100vh;
+        height: 100vh; /* Full height of the viewport */
         flex-direction: column;
+        overflow: hidden; /* Prevent horizontal scroll */
+        width: 100vw; /* Full width of the viewport */
       }
 
       .controls {
         margin-bottom: 20px;
+        width: 100%; /* Full width for controls */
+        text-align: center; /* Center the controls */
       }
 
       .print-osasto {
-        font-size: 10vw; /* Match the size with Lounaalla title */
+        font-size: 5vw; /* Adjusted size for better scaling */
         font-weight: bold; /* Make it bold for emphasis */
         margin: 10px 0; /* Add some margin */
       }
@@ -37,8 +41,8 @@
       .kyltti {
         text-align: center;
         border: 2px solid #000; /* Optional border */
-        padding: 20px;
-        width: 80%; /* Limit width for printing */
+        padding: 10px; /* Reduced padding */
+        width: 90%; /* Use 90% of the viewport width */
         max-width: 600px; /* Set maximum width */
         box-sizing: border-box; /* Include padding in width */
         position: relative; /* To position icon inside */
@@ -47,21 +51,22 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        overflow: hidden; /* Prevent overflow from icon and text */
       }
 
       .kyltti i {
-        font-size: 25vw; /* Icon size as a fraction of viewport width */
-        max-width: 25%; /* Limit the max width of icon to 25% of the page */
+        font-size: 20vw; /* Icon size as a fraction of viewport width */
+        max-width: 100%; /* Reset max width of icon */
         height: auto; /* Maintain aspect ratio */
       }
 
       .kyltti h1 {
-        font-size: 10vw; /* Title size as a fraction of viewport width */
+        font-size: 5vw; /* Adjusted title size */
         margin: 10px 0; /* Add some margin */
       }
 
       .clock-time {
-        font-size: 10vw; /* Time size as a fraction of viewport width */
+        font-size: 5vw; /* Adjusted time size */
         font-weight: bold;
         margin: 10px 0; /* Add some margin */
       }
@@ -76,7 +81,7 @@
           justify-content: center; /* Center horizontally */
           align-items: center; /* Center vertically */
           flex-direction: column; /* Maintain column layout */
-          height: 100vh; /* Set height for printing */
+          width: 100%; /* Use full width for printing */
         }
 
         .controls {
