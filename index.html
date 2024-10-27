@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="fi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lounaalla - Kyltti</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/dc76f903b0.js"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      body {
+        font-family: "Roboto", sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        flex-direction: column;
+      }
+
+      .controls {
+        margin-bottom: 20px;
+      }
+
+      .print-osasto {
+        font-size: 10vw; /* Match the size with Lounaalla title */
+        font-weight: bold; /* Make it bold for emphasis */
+        margin: 10px 0; /* Add some margin */
+      }
+
+      .kyltti {
+        text-align: center;
+        border: 2px solid #000; /* Optional border */
+        padding: 20px;
+        width: 80%; /* Limit width for printing */
+        max-width: 600px; /* Set maximum width */
+        box-sizing: border-box; /* Include padding in width */
+        position: relative; /* To position icon inside */
+        margin: 0 auto; /* Center horizontally */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .kyltti i {
+        font-size: 25vw; /* Icon size as a fraction of viewport width */
+        max-width: 25%; /* Limit the max width of icon to 25% of the page */
+        height: auto; /* Maintain aspect ratio */
+      }
+
+      .kyltti h1 {
+        font-size: 10vw; /* Title size as a fraction of viewport width */
+        margin: 10px 0; /* Add some margin */
+      }
+
+      .clock-time {
+        font-size: 10vw; /* Time size as a fraction of viewport width */
+        font-weight: bold;
+        margin: 10px 0; /* Add some margin */
+      }
+
+      /* Print styles */
+      @media print {
+        body {
+          height: auto; /* Allow body to adjust for print */
+          margin: 0; /* Remove margin */
+          padding: 0; /* Remove padding */
+          display: flex;
+          justify-content: center; /* Center horizontally */
+          align-items: center; /* Center vertically */
+          flex-direction: column; /* Maintain column layout */
+          height: 100vh; /* Set height for printing */
+        }
+
+        .controls {
+          display: none; /* Hide controls when printing */
+        }
+
+        .print-osasto {
+          font-size: 10vw; /* Match the size with Lounaalla title */
+          font-weight: bold; /* Make it bold for emphasis */
+          margin: 10px 0; /* Add some margin */
+        }
+
+        .kyltti {
+          border: none; /* Remove border for printing */
+          padding: 0; /* Remove padding */
+          width: 100%; /* Use full width for printing */
+          height: 80vh; /* Give sufficient height for centering */
+          display: flex; /* Use flex for alignment */
+          flex-direction: column; /* Stack children vertically */
+          align-items: center; /* Center children horizontally */
+          justify-content: center; /* Center children vertically */
+          box-shadow: none; /* Remove any shadow */
+        }
+
+        .kyltti i {
+          font-size: 25vw; /* Maintain size relative to viewport */
+          max-width: none; /* Reset max width for printing */
+        }
+
+        .kyltti h1 {
+          font-size: 10vw; /* Larger title size for printing */
+          margin: 10px 0; /* Add some margin */
+        }
+
+        .clock-time {
+          font-size: 10vw; /* Larger time size for printing */
+          font-weight: bold;
+          margin: 10px 0; /* Add some margin */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="controls">
+      <select id="osasto-valinta" onchange="paivitaOsasto()">
+        <option value="" disabled selected hidden>Valitse osasto</option>
+        <option value="Varasto">📦 Varasto (Warehouse)</option>
+        <option value="Varaosat">🔧 Varaosat (Spare Parts)</option>
+        <option value="Huolto">🛠️ Huolto (Maintenance)</option>
+        <option value="Myynti">💼 Myynti (Sales)</option>
+        <option value="Logistiikka">🚚 Logistiikka (Logistics)</option>
+      </select>
+      <input type="time" id="aika-syotto" />
+      <button onclick="paivitaAika()">Aseta Paluu Aika</button>
+    </div>
+
+    <div class="print-osasto" id="selected-osasto"></div>
+    <div class="kyltti">
+      <i class="fa-solid fa-utensils"></i>
+      <h1>Lounaalla</h1>
+      <p>Takaisin klo</p>
+      <p class="clock-time" id="paluu-aika">13:20</p>
+    </div>
+
+    <script>
+      function paivitaOsasto() {
+        const osastoValinta = document.getElementById("osasto-valinta").value;
+        const selectedOsasto = document.getElementById("selected-osasto");
+
+        const emojis = {
+          Varasto: "📦",
+          Varaosat: "🔧",
+          Huolto: "🛠️",
+          Myynti: "💼",
+          Logistiikka: "🚚",
+        };
+
+        selectedOsasto.textContent = osastoValinta
+          ? `${emojis[osastoValinta]} ${osastoValinta}`
+          : "";
+      }
+
+      function paivitaAika() {
+        const aikaSyotto = document.getElementById("aika-syotto").value;
+        const paluuAika = document.getElementById("paluu-aika");
+        paluuAika.textContent = aikaSyotto ? `${aikaSyotto}` : "13:20";
+      }
+    </script>
+  </body>
+</html>
